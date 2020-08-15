@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Button } from "semantic-ui-react";
+import { Button, Sidebar } from "semantic-ui-react";
 
 import DispatchTable from "./Components/DispatchTable";
+import FilterDispatchForm from "./Components/FilterDispatchForm";
 
 const Wrapper = styled.div`
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: #fff;
   min-height: 100vh;
 `;
@@ -16,6 +14,9 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const Header = styled.p`
@@ -53,8 +54,12 @@ const AddDispatchButton = styled(Button)`
 const Content = styled.div`
   padding: 2em 0em;
 `;
+const DispatchContainer = styled.div`
+  padding: 0em 2em;
+`;
 
 export default function Home() {
+  let [filter, setFilter] = useState(true);
   return (
     <Wrapper>
       <HeaderContainer>
@@ -72,12 +77,40 @@ export default function Home() {
               $82,080.30
             </Button>
           </EarningsContainer>
-          <AddDispatchButton>Add dispatch</AddDispatchButton>
+          <AddDispatchButton
+            onClick={() => {
+              setFilter(!filter);
+            }}
+          >
+            Add dispatch
+          </AddDispatchButton>
         </HeaderContent>
       </HeaderContainer>
 
       <Content>
-        <DispatchTable />
+        <Sidebar.Pushable>
+          <Sidebar
+            animation="scale down"
+            icon="labeled"
+            inverted
+            vertical
+            visible={filter}
+            width="wide"
+            direction="right"
+          >
+            <FilterDispatchForm
+              onSubmit={() => {
+                setFilter(false);
+              }}
+            />
+          </Sidebar>
+
+          <Sidebar.Pusher>
+            <DispatchContainer>
+              <DispatchTable />
+            </DispatchContainer>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </Content>
     </Wrapper>
   );
