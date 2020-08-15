@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Button } from "semantic-ui-react";
+
+import Operators from "components/Operators";
 
 const dispatchMenus = [
   {
@@ -25,7 +28,11 @@ const HeaderContainer = styled.div`
   padding: 2em;
 `;
 
-const DispatchMenusContainer = styled.div``;
+const DispatchMenusContainer = styled.div`
+  border-bottom-width: 2px;
+  border-bottom-color: #eeeeee;
+  border-bottom-style: solid;
+`;
 
 const MenuItem = styled.a`
   display: flex;
@@ -55,6 +62,16 @@ const MenuLabel = styled.p`
   font-family: ${(props) => (props.selected ? "Avenir-Black" : "Avenir-Roman")};
 `;
 
+const AddDispatch = styled.div`
+  padding: 1em 2em;
+`;
+const AddDispatchButton = styled(Button)`
+  &&& {
+    font-family: Avenir-Roman;
+    background-color: #2e5bff;
+  }
+`;
+
 export default function Dispatch() {
   let [currentDispatchMenu, setCurrentDispatchMenu] = useState(
     dispatchMenus[0]
@@ -80,7 +97,13 @@ export default function Dispatch() {
             </MenuLabel>
           </MenuItem>
         ))}
+        <AddDispatch>
+          <AddDispatchButton fluid primary>
+            Add dispatch
+          </AddDispatchButton>
+        </AddDispatch>
       </DispatchMenusContainer>
+      <Operators />
     </Wrapper>
   );
 }

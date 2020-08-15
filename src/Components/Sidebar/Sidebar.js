@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Grid, Image, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ const menus = [
   {
     name: "Overview",
     icon: "table",
-    component: <Dispatch />,
+    component: <Fragment />,
   },
   {
     name: "Dispatch",
@@ -26,7 +26,7 @@ const menus = [
     component: <Dispatch />,
   },
   {
-    name: "People",
+    name: "Control room",
     icon: "users",
     component: <Dispatch />,
   },
