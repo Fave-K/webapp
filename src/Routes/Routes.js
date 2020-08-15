@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense, createRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
   BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
   withRouter,
 } from "react-router-dom";
 import styled from "styled-components";
-import { Divider, Segment, Sidebar, Menu } from "semantic-ui-react";
+import { Ref, Segment, Sidebar, Grid, Sticky } from "semantic-ui-react";
 
 import "./Routes.css";
 
@@ -21,9 +21,23 @@ const Fill = styled.div`
   min-height: 100%;
 `;
 
-const Content = styled(Sidebar.Pushable)`
-  margin-top: 3.5em;
-  min-height: 100vh;
+const GridContainer = styled.div`
+  &&& {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+`;
+const ContentContainer = styled(Grid.Row)`
+  &&& {
+    padding: 0px;
+  }
+`;
+const Content = styled(Grid.Column)`
+  &&&& {
+    padding: 0px;
+  }
 `;
 
 class ScrollToTop extends Component {
@@ -41,49 +55,63 @@ class ScrollToTop extends Component {
 const ScrollToTopContainer = withRouter(ScrollToTop);
 
 const PageRouter = () => {
+  let contextRef = createRef();
   const [visible, setVisible] = React.useState(true);
   return (
     <Router>
       <ScrollToTopContainer>
         <Route
           render={({ location }) => (
-            <Fill>
-              <Route exact path="/" render={() => <Redirect to="/home" />} />
-              <Header />
+            <Ref innerRef={contextRef}>
+              <Fill>
+                <Route exact path="/" render={() => <Redirect to="/home" />} />
+                <Header />
 
-              <Content>
+                <GridContainer>
+                  <Grid>
+                    <ContentContainer>
+                      <Content width={4}>
+                        <Sticky context={contextRef}>
+                          <AppSidebar />
+                        </Sticky>
+                      </Content>
+                      <Content width={12}>
+                        <Suspense
+                          fallback={
+                            <Segment loading>
+                              {/* <Image src={autohausPlaceHolder} /> */}
+                            </Segment>
+                          }
+                        >
+                          <TransitionGroup>
+                            <CSSTransition
+                              key={location.key}
+                              classNames="fade2"
+                              timeout={300}
+                            >
+                              <Switch location={location}>
+                                <Route exact path="/home" component={Home} />
+                              </Switch>
+                            </CSSTransition>
+                          </TransitionGroup>
+                        </Suspense>
+                      </Content>
+                    </ContentContainer>
+                  </Grid>
+                </GridContainer>
+
+                {/* <ContentContainer>
                 <Sidebar
-                  animation="push"
+                  animation="scale down"
                   vertical
                   visible={visible}
                   width="very wide"
-                >
-                  <AppSidebar />
-                </Sidebar>
+                ></Sidebar>
 
-                <Sidebar.Pusher>
-                  <Suspense
-                    fallback={
-                      <Segment loading>
-                        {/* <Image src={autohausPlaceHolder} /> */}
-                      </Segment>
-                    }
-                  >
-                    <TransitionGroup>
-                      <CSSTransition
-                        key={location.key}
-                        classNames="fade2"
-                        timeout={300}
-                      >
-                        <Switch location={location}>
-                          <Route exact path="/home" component={Home} />
-                        </Switch>
-                      </CSSTransition>
-                    </TransitionGroup>
-                  </Suspense>
-                </Sidebar.Pusher>
-              </Content>
-            </Fill>
+                <Content></Content>
+              </ContentContainer> */}
+              </Fill>
+            </Ref>
           )}
         />
       </ScrollToTopContainer>

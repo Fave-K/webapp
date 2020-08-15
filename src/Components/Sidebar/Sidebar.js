@@ -8,7 +8,7 @@ const menus = [
   {
     name: "Overview",
     icon: "table",
-    component: <Fragment />,
+    component: <Dispatch />,
   },
   {
     name: "Dispatch",
@@ -48,7 +48,7 @@ const menus = [
 ];
 
 const Wrapper = styled.div`
-  height: 100%;
+  height: 100vh;
 
   display: flex;
   flex-direction: row;
@@ -65,6 +65,9 @@ const ApplicationsContainer = styled.div`
 `;
 const SubApplicationsContainer = styled.div`
   flex: 2;
+  border-right-width: 2px;
+  border-right-color: #eeeeee;
+  border-right-style: solid;
 `;
 
 const MenuItem = styled.a`

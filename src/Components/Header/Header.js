@@ -3,8 +3,8 @@ import { Button, Dropdown, Menu } from "semantic-ui-react";
 import styled from "styled-components";
 
 const Wrapper = styled(Menu)`
-  &&& {
-    margin: 0;
+  && {
+    margin: 0px;
   }
 `;
 
@@ -17,7 +17,7 @@ export default class Header extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Wrapper fixed="top">
+      <Wrapper>
         <Menu.Item
           name="home"
           active={activeItem === "home"}
