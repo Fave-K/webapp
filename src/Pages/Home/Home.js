@@ -4,6 +4,7 @@ import { Button, Sidebar } from "semantic-ui-react";
 
 import DispatchTable from "./Components/DispatchTable";
 import FilterDispatchForm from "./Components/FilterDispatchForm";
+import DispatchDetailsForm from "./Components/DispatchDetailsForm";
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -59,7 +60,10 @@ const DispatchContainer = styled.div`
 `;
 
 export default function Home() {
-  let [filter, setFilter] = useState(true);
+  let [filter, setFilter] = useState(false);
+  let [dispatchDetailsFormVisible, setDispatchDetailsFormVisible] = useState(
+    true
+  );
   return (
     <Wrapper>
       <HeaderContainer>
@@ -79,7 +83,7 @@ export default function Home() {
           </EarningsContainer>
           <AddDispatchButton
             onClick={() => {
-              setFilter(!filter);
+              setDispatchDetailsFormVisible(true);
             }}
           >
             Add dispatch
@@ -101,6 +105,21 @@ export default function Home() {
             <FilterDispatchForm
               onSubmit={() => {
                 setFilter(false);
+              }}
+            />
+          </Sidebar>
+          <Sidebar
+            animation="overlay"
+            icon="labeled"
+            inverted
+            vertical
+            visible={dispatchDetailsFormVisible}
+            width="very wide"
+            direction="right"
+          >
+            <DispatchDetailsForm
+              onSubmit={() => {
+                setDispatchDetailsFormVisible(false);
               }}
             />
           </Sidebar>
