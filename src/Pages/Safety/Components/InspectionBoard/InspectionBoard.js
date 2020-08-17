@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import styled from "styled-components";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Label } from "semantic-ui-react";
 import initialData from "./data";
+import StatusCard from "../InspectionCard";
 
 const Wrapper = styled.div`
   flex: 1;
@@ -19,36 +20,24 @@ const StatusColumn = styled.div`
 const ColumnHeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 0.5em 0em;
 `;
 
 const CardsContainer = styled.div``;
 
-const ColumnHeader = styled.h4``;
+const ColumnHeader = styled.h4`
+  font-family: Avenir-Book;
+  color: #b0bac9;
 
-const StatusCard = ({ task, index }) => (
-  <Draggable draggableId={task.id} index={index}>
-    {(provided) => (
-      <div
-        {...provided.draggableProps}
-        {...provided.dragHandleProps}
-        ref={provided.innerRef}
-      >
-        <Card>
-          <Card.Content>
-            <Card.Header>{task.name}</Card.Header>
-            <Card.Meta>{task.date}</Card.Meta>
-          </Card.Content>
-        </Card>
-      </div>
-    )}
-  </Draggable>
-);
+  font-size: 1.5em;
+`;
 
 const Column = ({ column, tasks }) => {
   return (
     <StatusColumn>
       <ColumnHeaderContainer>
         <ColumnHeader>{column.title}</ColumnHeader>
+        <Label color={column.color}>{tasks.length}</Label>
       </ColumnHeaderContainer>
       <Droppable droppableId={column.id}>
         {(provided) => (
@@ -58,7 +47,12 @@ const Column = ({ column, tasks }) => {
             {...provided.droppableProps}
           >
             {tasks.map((item, index) => (
-              <StatusCard index={index} key={item.id} task={item} />
+              <StatusCard
+                index={index}
+                key={item.id}
+                task={item}
+                color={column.color}
+              />
             ))}
             {provided.placeholder}
           </CardsContainer>
