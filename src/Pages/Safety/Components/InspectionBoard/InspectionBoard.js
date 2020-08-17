@@ -65,7 +65,47 @@ const Column = ({ column, tasks }) => {
 export default function InspectionBoard() {
   let [data, setData] = useState(initialData);
 
-  const onDragEnd = (result) => {};
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const sourceColumn = data.columns[source.droppableId];
+    const newSourceTaskIds = Array.from(sourceColumn.taskIds);
+    newSourceTaskIds.splice(source.index, 1);
+    const newSourceColumn = {
+      ...sourceColumn,
+      taskIds: newSourceTaskIds,
+    };
+
+    const destinationColumn = data.columns[destination.droppableId];
+    const newDestinationTaskIds = Array.from(destinationColumn.taskIds);
+    newDestinationTaskIds.splice(destination.index, 0, draggableId);
+    const newDestinationColumn = {
+      ...destinationColumn,
+      taskIds: newDestinationTaskIds,
+    };
+
+    const newData = {
+      ...data,
+      columns: {
+        ...data.columns,
+        [newSourceColumn.id]: newSourceColumn,
+        [newDestinationColumn.id]: newDestinationColumn,
+      },
+    };
+
+    setData(newData);
+  };
   return (
     <Wrapper>
       <DragDropContext onDragEnd={onDragEnd}>
