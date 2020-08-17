@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Icon, Image, Button } from "semantic-ui-react";
 
 const OperatorsContainer = styled.div`
-  padding: 2em;
+  padding: 2em 1em;
 `;
 
 const OperatorsHeaderContainer = styled.div``;
