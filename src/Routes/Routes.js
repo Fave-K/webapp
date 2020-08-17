@@ -13,7 +13,7 @@ import { Ref, Segment, Sidebar, Grid, Sticky } from "semantic-ui-react";
 
 import "./Routes.css";
 
-const Home = React.lazy(() => import("src/Pages/Home"));
+const DispatchHome = React.lazy(() => import("src/Pages/Dispatch/Home"));
 import Header from "components/Header";
 import AppSidebar from "components/Sidebar";
 
@@ -64,7 +64,11 @@ const PageRouter = () => {
           render={({ location }) => (
             <Ref innerRef={contextRef}>
               <Fill>
-                <Route exact path="/" render={() => <Redirect to="/home" />} />
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Redirect to="/dispatch" />}
+                />
                 <Header />
 
                 <GridContainer>
@@ -90,7 +94,11 @@ const PageRouter = () => {
                               timeout={300}
                             >
                               <Switch location={location}>
-                                <Route exact path="/home" component={Home} />
+                                <Route
+                                  exact
+                                  path="/dispatch"
+                                  component={DispatchHome}
+                                />
                               </Switch>
                             </CSSTransition>
                           </TransitionGroup>

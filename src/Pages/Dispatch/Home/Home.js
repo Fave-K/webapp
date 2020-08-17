@@ -76,7 +76,7 @@ export default function Home() {
   const segmentRef = React.useRef();
   let [filter, setFilter] = useState(false);
   let [dispatchDetailsFormVisible, setDispatchDetailsFormVisible] = useState(
-    true
+    false
   );
   return (
     <Sidebar.Pushable>
