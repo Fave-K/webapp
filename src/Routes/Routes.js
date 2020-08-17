@@ -14,6 +14,7 @@ import { Ref, Segment, Sidebar, Grid, Sticky } from "semantic-ui-react";
 import "./Routes.css";
 
 const DispatchHome = React.lazy(() => import("src/Pages/Dispatch/Home"));
+const SafetyHome = React.lazy(() => import("src/Pages/Safety/Home"));
 import Header from "components/Header";
 import AppSidebar from "components/Sidebar";
 
@@ -98,6 +99,11 @@ const PageRouter = () => {
                                   exact
                                   path="/dispatch"
                                   component={DispatchHome}
+                                />
+                                <Route
+                                  exact
+                                  path="/safety"
+                                  component={SafetyHome}
                                 />
                               </Switch>
                             </CSSTransition>

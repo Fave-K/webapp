@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
-import Sidebar from "./Sidebar";
-
-export class SidebarContainer extends Component {
+import InspectionOperators from "./InspectionOperators";
+export class InspectionOperatorsContainer extends Component {
   render() {
-    return <Sidebar {...this.props} />;
+    return <InspectionOperators {...this.props} />;
   }
 }
 
@@ -17,4 +15,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SidebarContainer));
+)(InspectionOperatorsContainer);
