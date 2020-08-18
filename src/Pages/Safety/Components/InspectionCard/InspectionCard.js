@@ -1,10 +1,10 @@
-import React from "react";
-import { Draggable } from "react-beautiful-dnd";
-
-import styled from "styled-components";
 import { Card, Icon, Image } from "semantic-ui-react";
 
-const InspectionCard = styled.div`
+import { Draggable } from "react-beautiful-dnd";
+import React from "react";
+import styled from "styled-components";
+
+const InspectionCard = styled.a`
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -29,7 +29,7 @@ const DetailContainer = styled.div`
   padding: 0em 2em;
 `;
 const DateContainer = styled.div`
-  padding: 0em 2em;
+  padding: 0em 1em;
 `;
 
 const Inspector = styled.h3`
@@ -44,7 +44,7 @@ const Date = styled.p`
   color: #2e384d;
 `;
 
-export default ({ task, index, color }) => (
+export default ({ task, index, color, onTaskClick }) => (
   <Draggable draggableId={task.id} index={index}>
     {(provided) => (
       <div
@@ -52,7 +52,12 @@ export default ({ task, index, color }) => (
         {...provided.dragHandleProps}
         ref={provided.innerRef}
       >
-        <InspectionCard>
+        <InspectionCard
+          onClick={(e) => {
+            e.preventDefault();
+            onTaskClick(task);
+          }}
+        >
           <BorderHighlight color={color}></BorderHighlight>
           <Content>
             <DetailContainer>

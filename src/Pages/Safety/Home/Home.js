@@ -1,8 +1,9 @@
+import { Button, Container, Icon, Ref, Sidebar } from "semantic-ui-react";
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button, Sidebar, Icon, Ref, Container } from "semantic-ui-react";
 
 import InspectionBoard from "../Components/InspectionBoard";
+import InspectionDetailsForm from "../Components/InspectionDetailsForm";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
@@ -70,40 +71,35 @@ const Content = styled(Container)`
   flex: 1;
 `;
 const InspectionBoardContainer = styled.div`
-  padding: 0em 2em;
+  
   height: 100%;
 `;
 
 export default function Home() {
   const segmentRef = React.useRef();
-  let [filter, setFilter] = useState(false);
-  let [dispatchDetailsFormVisible, setDispatchDetailsFormVisible] = useState(
-    false
-  );
+  let [
+    inspectionDetailsFormVisible,
+    setInspectionDetailsFormVisible,
+  ] = useState(false);
   return (
     <Sidebar.Pushable>
       <Sidebar
-        animation="scale down"
-        icon="labeled"
-        inverted
-        vertical
-        visible={filter}
-        width="wide"
-        direction="right"
-        onHide={() => setFilter(false)}
-        target={segmentRef}
-      ></Sidebar>
-      <Sidebar
-        target={segmentRef}
         animation="overlay"
         icon="labeled"
         inverted
         vertical
-        visible={dispatchDetailsFormVisible}
+        visible={inspectionDetailsFormVisible}
         width="very wide"
         direction="right"
-        onHide={() => setDispatchDetailsFormVisible(false)}
-      ></Sidebar>
+        onHide={() => setInspectionDetailsFormVisible(false)}
+        target={segmentRef}
+      >
+        <InspectionDetailsForm
+          onSubmit={() => {
+            setInspectionDetailsFormVisible(false);
+          }}
+        />
+      </Sidebar>
 
       <Sidebar.Pusher>
         <Ref innerRef={segmentRef}>
@@ -123,13 +119,23 @@ export default function Home() {
                       7
                     </Button>
                   </EarningsContainer>
-                  <AddInspectionButton onClick={() => {}}>
+                  <AddInspectionButton
+                    onClick={() => {
+                      setInspectionDetailsFormVisible(
+                        !inspectionDetailsFormVisible
+                      );
+                    }}
+                  >
                     Add inspection
                   </AddInspectionButton>
                 </HeaderContent>
               </HeaderContainer>
               <InspectionBoardContainer>
-                <InspectionBoard />
+                <InspectionBoard
+                  onTaskClick={() => {
+                    setInspectionDetailsFormVisible(true);
+                  }}
+                />
               </InspectionBoardContainer>
             </Content>
           </Wrapper>

@@ -1,21 +1,25 @@
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import React, { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import styled from "styled-components";
 import { Label } from "semantic-ui-react";
-import initialData from "./data";
 import StatusCard from "../InspectionCard";
+import initialData from "./data";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: row;
+  height: 100%;
+  overflow-x: scroll;
+  padding: 0em 2em;
 `;
 
 const StatusColumn = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 2em;
+  min-width: 300px;
 `;
 const ColumnHeaderContainer = styled.div`
   display: flex;
@@ -23,7 +27,9 @@ const ColumnHeaderContainer = styled.div`
   padding: 0.5em 0em;
 `;
 
-const CardsContainer = styled.div``;
+const CardsContainer = styled.div`
+  min-height: 300px;
+`;
 
 const ColumnHeader = styled.h4`
   font-family: Avenir-Book;
@@ -32,7 +38,7 @@ const ColumnHeader = styled.h4`
   font-size: 1.5em;
 `;
 
-const Column = ({ column, tasks }) => {
+const Column = ({ column, tasks, onTaskClick }) => {
   return (
     <StatusColumn>
       <ColumnHeaderContainer>
@@ -52,6 +58,7 @@ const Column = ({ column, tasks }) => {
                 key={item.id}
                 task={item}
                 color={column.color}
+                onTaskClick={onTaskClick}
               />
             ))}
             {provided.placeholder}
@@ -62,7 +69,7 @@ const Column = ({ column, tasks }) => {
   );
 };
 
-export default function InspectionBoard() {
+export default function InspectionBoard({ onTaskClick }) {
   let [data, setData] = useState(initialData);
 
   const onDragEnd = (result) => {
@@ -112,7 +119,9 @@ export default function InspectionBoard() {
         {data.columnOrder.map((columnId) => {
           let column = data.columns[columnId];
           let tasks = column.taskIds.map((taskId) => data.tasks[taskId]);
-          return <Column column={column} tasks={tasks} />;
+          return (
+            <Column column={column} tasks={tasks} onTaskClick={onTaskClick} />
+          );
         })}
       </DragDropContext>
     </Wrapper>
