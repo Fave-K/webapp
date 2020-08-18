@@ -6,9 +6,8 @@
     "paths": {
       "src/*": ["src/*"],
       "components/*": ["src/Components/*"],
-      "store/*": ["src/Store/*"],
-      
+      "store/*": ["src/Store/*"]
     }
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["dist"]
 }

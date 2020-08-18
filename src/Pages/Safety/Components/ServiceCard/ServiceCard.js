@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const InspectionCard = styled.a`
+const ServiceCard = styled.a`
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -21,31 +21,39 @@ const BorderHighlight = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: row;
   padding: 1em 0em;
+  flex: 1;
 `;
 
 const DetailContainer = styled.div`
-  padding: 0em 2em;
-`;
-const DateContainer = styled.div`
-  padding: 0em 1em;
+  padding: 0em 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const Inspector = styled.h3`
+const Assignee = styled.h3`
   font-family: Avenir-Book;
   color: #2e384d;
-
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
 `;
-const Equipment = styled.p`
+const Price = styled.h3`
+  font-family: Avenir-Black;
+  color: #2e384d;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+`;
+const Description = styled.p`
   color: #8798ad;
-
+  margin: 0px;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -53,9 +61,8 @@ const Equipment = styled.p`
   -ms-user-select: none; /* Internet Explorer/Edge */
 `;
 const Date = styled.p`
-  font-family: Avenir-Roman;
-  color: #2e384d;
-
+  color: #8798ad;
+  margin: 0px;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -63,22 +70,25 @@ const Date = styled.p`
   -ms-user-select: none; /* Internet Explorer/Edge */
 `;
 
-export default ({ task, index, color, onTaskClick }) => (
-  <InspectionCard
-    onClick={(e) => {
-      e.preventDefault();
-      onTaskClick(task);
-    }}
-  >
-    <BorderHighlight color={color}></BorderHighlight>
-    <Content>
-      <DetailContainer>
-        <Inspector>{task.name}</Inspector>
-        <Equipment>EQUIPMENT #{task.equipmentNumber}</Equipment>
-      </DetailContainer>
-      <DateContainer>
-        <Date>{task.date}</Date>
-      </DateContainer>
-    </Content>
-  </InspectionCard>
-);
+export default ({ task, color, onTaskClick }) => {
+  return (
+    <ServiceCard
+      onClick={(e) => {
+        e.preventDefault();
+        onTaskClick(task);
+      }}
+    >
+      <BorderHighlight color={color} />
+      <Content>
+        <DetailContainer>
+          <Assignee>{task.name}</Assignee>
+          <Price>${task.price}</Price>
+        </DetailContainer>
+        <DetailContainer>
+          <Description>{task.description}</Description>
+          <Date>{task.date}</Date>
+        </DetailContainer>
+      </Content>
+    </ServiceCard>
+  );
+};
