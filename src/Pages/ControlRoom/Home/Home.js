@@ -1,6 +1,7 @@
 import { Button, Container, Icon, Ref, Sidebar } from "semantic-ui-react";
 import React, { useState } from "react";
 
+import DriverDetailForm from "../Components/DriverDetailForm";
 import DriversGrid from "../Components/DriversGrid";
 import styled from "styled-components";
 
@@ -34,27 +35,12 @@ const HeaderContent = styled.div`
   align-items: flex-start;
 `;
 
-const EarningsContainer = styled.div`
-  padding: 0em 4em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
 const AddDriverButton = styled(Button)`
   &&& {
     font-family: Avenir-Roman;
     background-color: #2e5bff;
     color: #fff;
   }
-`;
-const FilterDispatchButton = styled(Button)``;
-const FilterButtonContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-family: Avenir-Roman;
-  color: #2e5bff;
-  background-color: #fff;
 `;
 
 const Content = styled(Container)`
@@ -77,11 +63,13 @@ export default function Home() {
         inverted
         vertical
         visible={driverDetailsFormVisible}
-        width="very wide"
+        width="wide"
         direction="right"
         onHide={() => setDriverDetailsFormVisible(false)}
         target={segmentRef}
-      ></Sidebar>
+      >
+        <DriverDetailForm />
+      </Sidebar>
 
       <Sidebar.Pusher>
         <Ref innerRef={segmentRef}>
