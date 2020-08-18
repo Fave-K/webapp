@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
@@ -103,7 +103,7 @@ export default function Services() {
                 <HeaderContent>
                   <EarningsContainer>
                     <Button attached="left" basic>
-                      Inspections due this month
+                      Services due this month
                     </Button>
                     <Button attached="right" basic>
                       7

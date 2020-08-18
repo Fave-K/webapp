@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
@@ -71,7 +71,6 @@ const Content = styled(Container)`
   flex: 1;
 `;
 const InspectionBoardContainer = styled.div`
-  
   height: 100%;
 `;
 
