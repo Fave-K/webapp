@@ -1,22 +1,25 @@
-import React, { Component, Suspense, createRef } from "react";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import "./Routes.css";
+
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Grid, Ref, Segment, Sticky } from "semantic-ui-react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
   Redirect,
+  Route,
+  BrowserRouter as Router,
+  Switch,
   withRouter,
 } from "react-router-dom";
-import styled from "styled-components";
-import { Ref, Segment, Sidebar, Grid, Sticky } from "semantic-ui-react";
+import React, { Component, Suspense, createRef } from "react";
 
-import "./Routes.css";
+import AppSidebar from "components/Sidebar";
+import Header from "components/Header";
+import styled from "styled-components";
 
 const DispatchHome = React.lazy(() => import("src/Pages/Dispatch/Home"));
 const SafetyHome = React.lazy(() => import("src/Pages/Safety/Home"));
-import Header from "components/Header";
-import AppSidebar from "components/Sidebar";
+const SafetyServices = React.lazy(() => import("src/Pages/Safety/Services"));
+
 
 const Fill = styled.div`
   min-height: 100%;
@@ -105,6 +108,11 @@ const PageRouter = () => {
                                   path="/safety"
                                   component={SafetyHome}
                                 />
+                                <Route
+                                  exact
+                                  path="/safety/services"
+                                  component={SafetyServices}
+                                />
                               </Switch>
                             </CSSTransition>
                           </TransitionGroup>
@@ -113,17 +121,6 @@ const PageRouter = () => {
                     </ContentContainer>
                   </Grid>
                 </GridContainer>
-
-                {/* <ContentContainer>
-                <Sidebar
-                  animation="scale down"
-                  vertical
-                  visible={visible}
-                  width="very wide"
-                ></Sidebar>
-
-                <Content></Content>
-              </ContentContainer> */}
               </Fill>
             </Ref>
           )}

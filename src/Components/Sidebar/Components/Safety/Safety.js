@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button } from "semantic-ui-react";
 
+import { Button } from "semantic-ui-react";
 import Operators from "components/InspectionOperators";
+import styled from "styled-components";
 
 const safetyMenus = [
   {
     name: "Safety & inspection options",
+    path: "/safety/",
   },
   {
     name: "Inspection reminders",
+    path: "/safety/",
+  },
+  {
+    name: "Service reminders",
+    path: "/safety/services/",
   },
   {
     name: "Maintenance reports",
+    path: "/safety/",
   },
   {
     name: "Configure operator settings",
+    path: "/safety/",
   },
 ];
 
@@ -69,7 +77,7 @@ const AddInspectionButton = styled(Button)`
   }
 `;
 
-export default function Safety() {
+export default function Safety({ history }) {
   let [currentSafetyMenu, setCurrentSafetyMenu] = useState(safetyMenus[0]);
   return (
     <Wrapper>
@@ -82,6 +90,7 @@ export default function Safety() {
             onClick={(e) => {
               e.preventDefault();
               setCurrentSafetyMenu(item);
+              history.push(item.path);
             }}
             selected={currentSafetyMenu.name === item.name}
             href="#"

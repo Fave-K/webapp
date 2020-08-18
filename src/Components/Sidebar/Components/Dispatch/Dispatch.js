@@ -1,24 +1,29 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button } from "semantic-ui-react";
 
+import { Button } from "semantic-ui-react";
 import Operators from "components/Operators";
+import styled from "styled-components";
 
 const dispatchMenus = [
   {
     name: "Dispatch status",
+    path: "/dispatch",
   },
   {
     name: "Add dispatch",
+    path: "/dispatch",
   },
   {
     name: "Pending trips",
+    path: "/dispatch",
   },
   {
     name: "Completed trips",
+    path: "/dispatch",
   },
   {
     name: "Earnings",
+    path: "/dispatch",
   },
 ];
 

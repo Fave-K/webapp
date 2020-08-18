@@ -1,57 +1,57 @@
-import React, { useState, Fragment } from "react";
-import { Grid, Image, Icon } from "semantic-ui-react";
-import styled from "styled-components";
+import { Grid, Icon, Image } from "semantic-ui-react";
+import React, { Fragment, useState } from "react";
 
 import Dispatch from "./Components/Dispatch";
 import Safety from "./Components/Safety";
+import styled from "styled-components";
 
 const menus = [
   {
     name: "Overview",
     icon: "table",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Dispatch",
     icon: "truck",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Drivers",
     icon: "music",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Inbox",
     icon: "paper plane outline",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Control room",
     icon: "users",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Accounting",
     icon: "music",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
   {
     name: "Safety",
     icon: "medkit",
-    component: <Safety />,
+    component: Safety,
     path: "/safety",
   },
   {
     name: "Settings",
     icon: "settings",
-    component: <Dispatch />,
+    component: Dispatch,
     path: "/dispatch",
   },
 ];
@@ -127,7 +127,7 @@ export default ({ history }) => {
         ))}
       </ApplicationsContainer>
       <SubApplicationsContainer>
-        {currentMenu.component}
+        <currentMenu.component history={history} />
       </SubApplicationsContainer>
     </Wrapper>
   );
