@@ -20,6 +20,7 @@ const DispatchHome = React.lazy(() => import("src/Pages/Dispatch/Home"));
 const SafetyHome = React.lazy(() => import("src/Pages/Safety/Home"));
 const SafetyServices = React.lazy(() => import("src/Pages/Safety/Services"));
 const ControlRoomHome = React.lazy(() => import("src/Pages/ControlRoom/Home"));
+const InboxChat = React.lazy(() => import("src/Pages/Inbox/Chat"));
 
 const Fill = styled.div`
   min-height: 100%;
@@ -117,6 +118,11 @@ const PageRouter = () => {
                                   exact
                                   path="/control-room"
                                   component={ControlRoomHome}
+                                />
+                                <Route
+                                  exact
+                                  path="/inbox"
+                                  component={InboxChat}
                                 />
                               </Switch>
                             </CSSTransition>

@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 
 import ControlRoom from "./Components/ControlRoom";
 import Dispatch from "./Components/Dispatch";
+import Inbox from "./Components/Inbox";
 import Safety from "./Components/Safety";
 import styled from "styled-components";
 
@@ -28,8 +29,8 @@ const menus = [
   {
     name: "Inbox",
     icon: "paper plane outline",
-    component: Dispatch,
-    path: "/dispatch",
+    component: Inbox,
+    path: "/inbox",
   },
   {
     name: "Control room",
