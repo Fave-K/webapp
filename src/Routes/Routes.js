@@ -19,7 +19,7 @@ import styled from "styled-components";
 const DispatchHome = React.lazy(() => import("src/Pages/Dispatch/Home"));
 const SafetyHome = React.lazy(() => import("src/Pages/Safety/Home"));
 const SafetyServices = React.lazy(() => import("src/Pages/Safety/Services"));
-
+const ControlRoomHome = React.lazy(() => import("src/Pages/ControlRoom/Home"));
 
 const Fill = styled.div`
   min-height: 100%;
@@ -112,6 +112,11 @@ const PageRouter = () => {
                                   exact
                                   path="/safety/services"
                                   component={SafetyServices}
+                                />
+                                <Route
+                                  exact
+                                  path="/control-room"
+                                  component={ControlRoomHome}
                                 />
                               </Switch>
                             </CSSTransition>

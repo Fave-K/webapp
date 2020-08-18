@@ -1,6 +1,7 @@
 import { Grid, Icon, Image } from "semantic-ui-react";
 import React, { Fragment, useState } from "react";
 
+import ControlRoom from "./Components/ControlRoom";
 import Dispatch from "./Components/Dispatch";
 import Safety from "./Components/Safety";
 import styled from "styled-components";
@@ -33,8 +34,8 @@ const menus = [
   {
     name: "Control room",
     icon: "users",
-    component: Dispatch,
-    path: "/dispatch",
+    component: ControlRoom,
+    path: "/control-room",
   },
   {
     name: "Accounting",
@@ -71,10 +72,10 @@ const ApplicationsContainer = styled.div`
   transition: box-shadow 0.1s ease, transform 0.1s ease;
   transition: box-shadow 0.1s ease, transform 0.1s ease,
     -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  flex: 1;
+  flex: 3;
 `;
 const SubApplicationsContainer = styled.div`
-  flex: 3;
+  flex: 6;
   border-right-width: 2px;
   border-right-color: #eeeeee;
   border-right-style: solid;
