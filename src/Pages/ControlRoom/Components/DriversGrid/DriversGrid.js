@@ -17,6 +17,7 @@ const DriverCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  background-color: #fff;
 `;
 
 const DriverAvatarContainer = styled.div`

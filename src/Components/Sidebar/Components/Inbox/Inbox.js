@@ -173,7 +173,6 @@ export default function ControlRoom() {
           </UserCard>
         ))}
       </DispatchMenusContainer>
-      <Operators />
     </Wrapper>
   );
 }

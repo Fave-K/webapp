@@ -75,6 +75,7 @@ export default function ControlRoom() {
     <Wrapper>
       <HeaderContainer>
         <h1>Control Room</h1>
+        <p>Central driver & assets database</p>
       </HeaderContainer>
       <DispatchMenusContainer>
         {dispatchMenus.map((item, index) => (

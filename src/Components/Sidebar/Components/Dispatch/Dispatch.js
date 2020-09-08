@@ -6,10 +6,6 @@ import styled from "styled-components";
 
 const dispatchMenus = [
   {
-    name: "Dispatch status",
-    path: "/dispatch",
-  },
-  {
     name: "Add dispatch",
     path: "/dispatch",
   },
@@ -85,6 +81,7 @@ export default function Dispatch() {
     <Wrapper>
       <HeaderContainer>
         <h1>Dispatch</h1>
+        <p>Dispatch status</p>
       </HeaderContainer>
       <DispatchMenusContainer>
         {dispatchMenus.map((item, index) => (

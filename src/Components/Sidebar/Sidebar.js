@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 const menus = [
   {
-    name: "Overview",
+    name: "Home",
     icon: "table",
     component: Dispatch,
     path: "/dispatch",
@@ -102,7 +102,7 @@ const MenuItem = styled.a`
 const MenuLabel = styled.p`
   font-family: Avenir-Roman;
   padding: 0 1em;
-  font-family: ${(props) => (props.selected ? "Avenir-Roman" : "Avenir-Book")};
+  font-family: ${(props) => (props.selected ? "Avenir-Black" : "Avenir-Book")};
   font-size: 1em;
 `;
 export default ({ history }) => {

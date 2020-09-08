@@ -22,6 +22,7 @@ const StatusColumn = styled.div`
 const ColumnHeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-direction: space-between;
   padding: 0.5em 0em;
 `;
 
@@ -34,6 +35,7 @@ const ColumnHeader = styled.h4`
   color: #b0bac9;
 
   font-size: 1.5em;
+  margin-right: 5px;
 `;
 
 const Column = ({ column, tasks, onTaskClick, Card }) => {

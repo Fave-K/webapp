@@ -5,10 +5,7 @@ import Operators from "components/InspectionOperators";
 import styled from "styled-components";
 
 const safetyMenus = [
-  {
-    name: "Safety & inspection options",
-    path: "/safety/",
-  },
+  
   {
     name: "Inspection reminders",
     path: "/safety/",
@@ -83,6 +80,7 @@ export default function Safety({ history }) {
     <Wrapper>
       <HeaderContainer>
         <h1>Safety</h1>
+        <p>Safety & inspection options</p>
       </HeaderContainer>
       <SafetyMenusContainer>
         {safetyMenus.map((item, index) => (
