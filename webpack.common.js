@@ -56,6 +56,7 @@ var config = {
       store: path.resolve(__dirname, "src/Store/"),
       components: path.resolve(__dirname, "src/Components/"),
       pages: path.resolve(__dirname, "src/Pages/"),
+      assets: path.resolve(__dirname, "src/assets/"),
     },
   },
   plugins: [

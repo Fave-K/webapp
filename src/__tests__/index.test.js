@@ -1,7 +1,8 @@
 /* global  it, describe */
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "../Containers/App"
+import App from "../Routes";
+
 
 import { Provider } from "react-redux"
 
