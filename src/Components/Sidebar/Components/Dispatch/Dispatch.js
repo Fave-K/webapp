@@ -92,6 +92,7 @@ export default function Dispatch() {
             }}
             selected={currentDispatchMenu.name === item.name}
             href="#"
+            key={index}
           >
             <Border selected={currentDispatchMenu.name === item.name} />
             <MenuLabel selected={currentDispatchMenu.name === item.name}>
